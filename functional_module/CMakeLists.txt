@@ -1,0 +1,5 @@
+add_subdirectory(fifo)
+add_subdirectory(hdc1080)
+add_subdirectory(bmp180)
+add_subdirectory(lora)
+add_subdirectory(data_conversion)
