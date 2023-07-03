@@ -69,7 +69,7 @@ Please provide a correct license! For more information:
 http://www.heltec.cn/search/ 
 ChipID=303030303337   
 ```
-4. 打开地址连接[获取许可证](https://resource.heltec.cn/search) ，将上一步获取的产品 **ChipID** 输入，即可获取到需要许可证（ **license** ）。
+4. 打开地址连接[获取许可证](https://resource.heltec.cn/search)，将上一步获取的产品 **ChipID** 输入，即可获取到需要许可证（ **license** ）。
 5.  使用 shell 命令 lora-config 打开配置界面，找到许可证输入选项，将上述的许可证输入进去。保存退出即可。
 >- HelTec LoRaWAN license  --->
 
