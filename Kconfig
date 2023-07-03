@@ -1,0 +1,181 @@
+mainmenu "HelTec LoRaWAN Kconfig configuration"
+
+choice LORAMAC_REGION
+	prompt  "LoRaWAN region choices"
+	config REGION_AS923
+		bool "AS923 region"
+	config REGION_AU915
+		bool "AU915 region"
+	config REGION_CN470
+		bool "CN470 region"
+	config REGION_CN779
+		bool "CN779 region"
+	config REGION_EU433
+		bool "EU433 region"
+	config REGION_EU868	
+		bool "EU868 region"
+	config REGION_KR920
+		bool "KR920 region"
+	config REGION_IN865
+		bool "IN865 region"
+	config REGION_US915
+		bool "US915 region"
+	config REGION_US915_HYBRID
+		bool "US915_HYBRID region"
+	config REGION_AU915_SB2
+		bool "AU915 SB2 region"
+	config REGION_AS923_AS1
+		bool "AS923 AS1 region"
+	config REGION_AS923_AS2
+		bool "AS923 AS2 region"
+endchoice
+
+
+choice LORAWAN_CLASS
+	prompt "LoRaWAN class choices"
+	config CLASS_A
+		bool "class A mode"
+	config CLASS_C
+		bool "class C mode"
+endchoice
+
+choice LORAWAN_PREAMBLE_LENGTH
+	prompt "LoRaWAN preamble length"
+	config PREAMBLE_LENGTH_8
+		bool "Preamble length equal to 8"
+	config PREAMBLE_LENGTH_16
+		bool "Preamble length equal to 16"
+endchoice
+
+choice ACCESS_METHOD
+	prompt "LoRaWAN network access method"
+	config MODE_OTAA
+		bool "Over The Air Activation"
+		menu "OTAA network access parameter configuration"
+			depends on MODE_OTAA
+			comment "Please enter a hexadecimal number (0-F). If it is the number 1, please enter 01."
+			config DEV_EUI
+				string "Set devEui to be 8 bytes long"
+				default "2232330000888801"
+			config APP_EUI
+				string "Set appEui to be 8 bytes long"
+				default "0000000000000000"
+			config APP_KEY
+				string "Set appEui to be 16 bytes long"
+				default "88888888888888888888888888886601"
+		endmenu  
+
+	config MODE_ABP
+		bool "Activation By Personalization"
+		menu "OTAA network access parameter configuration"
+			depends on MODE_ABP
+			comment "Please enter a hexadecimal number (0-F). If it is the number 1, please enter 01."
+			config NWK_SKEY
+				string "Set nwkSKey to be 16 bytes long"
+				default "88888888888888888888888888886601"
+			config APP_SKEY
+				string "Set appSKey to be 16 bytes long"
+				default "88888888888888888888888888886601"
+			config DEV_ADDR
+				string "Set devAddr to be 4 bytes long"
+				default "007e6ae1"
+		endmenu  
+endchoice
+
+
+choice DEBUG_LEVEL
+	prompt "LoRaWAN debug level"
+	config PRINT_FREQENCY_DIO
+		bool "Print frequency and DIO"
+	config PRINT_FREQENCY
+		bool "Print frequency"
+	config PRINT_BASIC_INFO
+		bool "Only print sent and received messages"
+	config PRINT_ERROR	
+		bool "Only print error messages"
+endchoice
+
+choice LORAWAN_APP_DATA
+	prompt "LoRaWAN upload data selection"
+	config FIXED_DATA
+		bool "fixed data"
+		menu "Set the data to be sent"
+			depends on FIXED_DATA
+			comment "Please enter a hexadecimal number (0-F). If it is the number 1, please enter 01."
+			config APP_TX_FRAME
+				string "Must be entered strictly according to the hexadecimal system!"
+				default "2232330000888801"
+		endmenu
+	config MKFIFO_DATA
+		bool "mkfifo"
+	config HDC1080_DATA
+		bool "hdc1080"
+	config BMP180_DATA
+		bool "bmp180"
+endchoice
+
+
+
+menu "LoRaWAN channels mask"
+	comment "Please enter a positive decimal integer."
+	config START_CH_NUM
+		int "Starting channel number"
+		range 0 15 if REGION_AS923
+		range 0 15 if REGION_EU868
+		range 0 71 if REGION_AU915
+		range 0 95 if REGION_CN470
+		range 0 15 if REGION_CN779
+		range 0 15 if REGION_EU433
+		range 0 15 if REGION_KR920
+		range 0 15 if REGION_IN865
+		range 0 71 if REGION_US915
+		range 0 71 if REGION_US915_HYBRID
+		default 0
+	config END_CH_NUM
+		int "End channel number"
+		range 0 15 if REGION_AS923
+		range 0 15 if REGION_EU868
+		range 0 71 if REGION_AU915
+		range 0 95 if REGION_CN470
+		range 0 15 if REGION_CN779
+		range 0 15 if REGION_EU433
+		range 0 15 if REGION_KR920
+		range 0 15 if REGION_IN865
+		range 0 71 if REGION_US915
+		range 0 71 if REGION_US915_HYBRID
+		default 7
+endmenu
+
+menu "LoRaWAN duty cycle"
+	comment "Please enter a positive decimal integer."
+	config APP_TX_DUTY_CYCLE
+		int "Sending time interval: unit ms"
+		default 15000
+endmenu
+
+menu "LoRaWAN app port"
+	comment "Please enter a positive decimal integer."
+	config APP_PORT
+		int "app port"
+		default 2
+		range 1 255
+endmenu
+
+
+menu "LoRaWAN other options configuration"
+	config ADR_ENABLE
+		bool "ADR enable"
+		default y
+
+	config TX_CONFIRMED
+		bool "Send confirmation frame"
+		default y
+endmenu
+
+
+menu "HelTec LoRaWAN license"
+	comment "Please get the license from this website.https://resource.heltec.cn/search"
+	config HELTEC_LICENSE
+		string "Example:0xBA3F1B2A,0x25C8B3E7,0xD6E20EE9,0x5B464176"
+		default "0xBA3F1B2A,0x25C8B3E7,0xD6E20EE9,0x5B464176"
+endmenu
