@@ -25,7 +25,7 @@
 
 ---------------------------------------
 ## 项目介绍 
->- Linux 下 **LoRaWAN** 应用的实现，支持 LoRaWAN1.02 协议
+>- Linux 下 **LoRaWAN** 应用的实现，支持 LoRaWAN1.0.2 协议
 >- 支持多个[频段](#目前支持频段)
 >- 使用 **cmake** 构建,可轻松添加自己的应用代码  
 >- 支持**图形化界面**进行参数的配置
@@ -51,17 +51,25 @@ make menuconfig
 ./demo
 ```
 3. 如果遇到 **Certificate verification failed** 请参看[许可证验证](#许可证验证)
+
 ## 许可证验证
-一般，我们都会直接将许可证保存在文件 /project/config/config.ini ,用户无需再自己查找许可证，但是可能存在文件信息被误删、误改的情况。若果出现验证不通过，就可以参看这一章节。
-1. 首先需要确保网线是插好的。
-2. 使用一下命令获取eth的MAC地址。
+
+一般，我们都会直接将许可证保存在文件 /project/config/config.ini ,用户无需再自己查找许可证，但是可能存在文件信息被误删、误改的情况。如果出现验证不通过，就可以参看这一章节。
+1. 进入 LoRaWAN 可执行文件的文件夹。
+
 ```sh
-ifconfig
+cd /home/lora/linux_lora/bin/
 ```
-3. 一般获取的MAC地址如第一行，去掉冒号( **:** )之后，得到需要的产品 ID ，如第二列。
->- ether 02:01:9b:f5:49:49   
->- 02019bf54949         
-4. 打开地址连接[获取许可证](https://resource.heltec.cn/search) ，将上一步获取的产品 ID 输入，即可获取到需要许可证（ **license** ）。
+
+2. 执行 ./demo 
+
+```sh
+Certificate verification failed
+Please provide a correct license! For more information:
+http://www.heltec.cn/search/ 
+ChipID=303030303337   
+```
+4. 打开地址连接[获取许可证](https://resource.heltec.cn/search)，将上一步获取的产品 **ChipID** 输入，即可获取到需要许可证（ **license** ）。
 5.  使用 shell 命令 lora-config 打开配置界面，找到许可证输入选项，将上述的许可证输入进去。保存退出即可。
 >- HelTec LoRaWAN license  --->
 
@@ -91,16 +99,16 @@ ifconfig
  >- [x] AS923 region
  >- [x] AU915 region
  >- [x] CN470 region
- >- [x] CN779 region
- >- [x] EU433 region
+ >- [ ] CN779 region
+ >- [ ] EU433 region
  >- [x] EU868 region
- >- [x] KR920 region
- >- [x] IN865 region
+ >- [ ] KR920 region
+ >- [ ] IN865 region
  >- [x] US915 region
- >- [x] US915_HYBRID region
+ >- [ ] US915_HYBRID region
  >- [ ] AU915 SB2 region
  >- [x] AS923 AS1 region
- >- [x] AS923 AS2 region
+ >- [ ] AS923 AS2 region
 
 ---------------------------------------
 ## 添加自己的功能模块
