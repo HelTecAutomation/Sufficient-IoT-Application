@@ -253,7 +253,7 @@ Thank you to the following people who participated in the project:
 
 
 
-\---------------------------------------
+---------------------------------------
 
 ## license
 
