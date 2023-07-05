@@ -54,7 +54,6 @@ make menuconfig
 
 ## 许可证验证
 
-一般，我们都会直接将许可证保存在文件 /project/config/config.ini ,用户无需再自己查找许可证，但是可能存在文件信息被误删、误改的情况。如果出现验证不通过，就可以参看这一章节。
 1. 进入 LoRaWAN 可执行文件的文件夹。
 
 ```sh
@@ -70,7 +69,7 @@ http://www.heltec.cn/search/
 ChipID=303030303337   
 ```
 4. 打开地址连接[获取许可证](https://resource.heltec.cn/search)，将上一步获取的产品 **ChipID** 输入，即可获取到需要许可证（ **license** ）。
-5.  使用 shell 命令 lora-config 打开配置界面，找到许可证输入选项，将上述的许可证输入进去。保存退出即可。
+5.  使用 shell 命令 make menuconfig 打开配置界面，找到许可证输入选项，将上述的许可证输入进去。保存退出即可。
 >- HelTec LoRaWAN license  --->
 
 ---------------------------------------
@@ -190,11 +189,14 @@ elif [ $DATA_SELECTION -eq 3 ];then
 
 ---------------------------------------
 ## 维护者
-[@Quency-D](https://github.com/RichardLitt)
 
----------------------------------------
+[@Quency-D](https://github.com/Quency-D)
+
+--------------------------------------------------------------
+
 ## 贡献
-非常欢迎你的加入！[提一个 Issue](https://github.com/RichardLitt/standard-readme/issues/new) 或者提交一个 Pull Request。
+
+非常欢迎你的加入！提一个 Issue 或者提交一个 Pull Request。
 
 
 标准 Readme 遵循 [Contributor Covenant](http://contributor-covenant.org/version/1/3/0/) 行为规范。
