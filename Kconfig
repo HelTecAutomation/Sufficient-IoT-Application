@@ -174,6 +174,7 @@ endmenu
 
 
 menu "HelTec LoRaWAN license"
+	comment "This device's ChipID is: xxxxxxxxxx "
 	comment "Please get the license from this website.https://resource.heltec.cn/search"
 	config HELTEC_LICENSE
 		string "Example:0xBA3F1B2A,0x25C8B3E7,0xD6E20EE9,0x5B464176"
